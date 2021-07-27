@@ -2,7 +2,6 @@ import 'package:awesome_tools/model/random_password.dart';
 import 'package:awesome_tools/widget/random_password/history_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:random_string/random_string.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class PwdBotton extends StatefulWidget {
@@ -15,10 +14,6 @@ class PwdBotton extends StatefulWidget {
 class _PwdBottonState extends State<PwdBotton> {
 // class PwdBotton extends StatelessWidget { void reload,
   // PwdBotton({Key? key}) : super(key: key);
-
-  String generateRandomString(int length) {
-    return randomString(length);
-  }
 
   bool _upperCase = false;
   bool _lowerCase = true;
