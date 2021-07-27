@@ -98,45 +98,65 @@ class _PwdBottonState extends State<PwdBotton> {
               foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
               overlayColor: MaterialStateProperty.all<Color>(Colors.lightBlue)),
           onPressed: () {
-            showDialog<String>(
-              context: context,
-              builder: (BuildContext context) {
-                var pwd = getPassword();
-                // return StatefulBuilder(builder: (context, setState) {
-                return AlertDialog(
-                  // title: const Text('随机密码已生成'),
-                  content: Text(pwd),
-                  actions: <Widget>[
-                    TextButton(
-                      onPressed: () {
-                        print('点击了取消');
-                        Navigator.pop(context, 'Cancel');
-                      },
-                      child: const Text('取消'),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Clipboard.setData(ClipboardData(text: pwd));
-                        eventBus.fire(pwd);
-                        print('点击了复制');
-                        showToast("已复制到粘贴板", 22);
-                        Navigator.pop(context, 'OK');
-                        print(pwd);
-                      },
-                      child: const Text('复制'),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        setState(() => pwd = getPassword());
-                        print('点击了再来一次');
-                      },
-                      child: Text('再来一次'),
-                    ),
-                  ],
-                );
-                // });
-              },
-            );
+            if (_upperCase == false &&
+                _lowerCase == false &&
+                _number == false &&
+                _character == false) {
+              showDialog<String>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                        content: Text("请勾选条件"),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context, 'NoConditionsOK');
+                            },
+                            child: const Text('确定'),
+                          ),
+                        ]);
+                  });
+            } else {
+              showDialog<String>(
+                context: context,
+                builder: (BuildContext context) {
+                  var pwd = getPassword();
+                  return StatefulBuilder(builder: (context, setState) {
+                    return AlertDialog(
+                      // title: const Text('随机密码已生成'),
+                      content: Text(pwd),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () {
+                            print('点击了取消');
+                            Navigator.pop(context, 'Cancel');
+                          },
+                          child: const Text('取消'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Clipboard.setData(ClipboardData(text: pwd));
+                            eventBus.fire(pwd);
+                            print('点击了复制');
+                            showToast("已复制到粘贴板", 22);
+                            Navigator.pop(context, 'OK');
+                            print(pwd);
+                          },
+                          child: const Text('复制'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            setState(() => pwd = getPassword());
+                            print('点击了再来一次');
+                          },
+                          child: Text('再来一次'),
+                        ),
+                      ],
+                    );
+                  });
+                },
+              );
+            }
           },
           child: const Text('濑 滋 苟'),
         )
