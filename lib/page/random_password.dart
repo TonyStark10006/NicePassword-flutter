@@ -14,7 +14,7 @@ class _RandomPasswordState extends State<RandomPassword> {
 
   @override
   Widget build(BuildContext context) {
-    print("randompassword");
+    // print("randompassword");
     return MaterialApp(
       title: "随机密码生成",
       home: Scaffold(

@@ -21,7 +21,7 @@ class _HistoryPwdListState extends State<HistoryPwdList> {
 
   @override
   void initState() {
-    print(1);
+    // print(1);
     super.initState();
     SharedPreferencesUtil.getData<List<String>?>("historyPwdList")
         .then((value) {
@@ -53,27 +53,6 @@ class _HistoryPwdListState extends State<HistoryPwdList> {
 
   @override
   Widget build(BuildContext buildContext) {
-    print(2);
-    // return StreamBuilder<int>(
-    //   stream: PwdBotton().s1.stream, //
-    //   //initialData: ,// a Stream<int> or null
-    //   builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
-    //     if (snapshot.hasError) return Text('Error: ${snapshot.error}');
-    //     switch (snapshot.connectionState) {
-    //       case ConnectionState.none:
-    //         return Text("没有Stream");
-    //       case ConnectionState.waiting:
-    //         return Text('等待数据...');
-    //       case ConnectionState.active:
-    //         return Text('active: ${snapshot.data}');
-    //       case ConnectionState.done:
-    //         return Text('Stream已关闭');
-    //     }
-    //     // return null; // unreachable
-    //   },
-    // );
-    //ValueListenableBuilder(valueListenable: valueListenable, builder: builder)
-    // return StatefulBuilder(builder: (context, setState) {
     return Column(
       children: [
         ListTile(
@@ -125,6 +104,5 @@ class _HistoryPwdListState extends State<HistoryPwdList> {
                 }))
       ],
     );
-    // });
   }
 }
