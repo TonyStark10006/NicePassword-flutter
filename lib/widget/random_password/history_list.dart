@@ -1,12 +1,9 @@
-import 'dart:async';
-
+import 'package:awesome_tools/state/gen_password_provider.dart';
 import 'package:awesome_tools/util/toast.dart';
-import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
 import 'package:awesome_tools/util/shared_preferences_util.dart';
 import 'package:flutter/services.dart';
-
-EventBus eventBus = EventBus();
+import 'package:provider/provider.dart';
 
 class HistoryPwdList extends StatefulWidget {
   HistoryPwdList({Key? key}) : super(key: key);
@@ -17,11 +14,11 @@ class HistoryPwdList extends StatefulWidget {
 
 class _HistoryPwdListState extends State<HistoryPwdList> {
   List<String> _temHistoryPwdList = [];
-  late StreamSubscription subscription;
+  bool wouldPass = false;
 
   @override
   void initState() {
-    // print(1);
+    print(1);
     super.initState();
     SharedPreferencesUtil.getData<List<String>?>("historyPwdList")
         .then((value) {
@@ -33,26 +30,20 @@ class _HistoryPwdListState extends State<HistoryPwdList> {
       });
       // ignore: invalid_return_type_for_catch_error
     }).catchError((onError) => {print(onError)});
-    subscription = eventBus.on<String>().listen((event) {
-      setState(() {
-        _temHistoryPwdList.add(event);
-      });
-      SharedPreferencesUtil.saveData<List<String>>(
-        "historyPwdList",
-        _temHistoryPwdList,
-      );
-    });
-  }
-
-  @override
-  void dispose() {
-    //不取消则存在内存泄漏
-    subscription.cancel();
-    super.dispose();
   }
 
   @override
   Widget build(BuildContext buildContext) {
+    String pwd = buildContext.watch<GenRandomPasswordProvider>().randomPassword;
+    bool pass = buildContext.watch<GenRandomPasswordProvider>().shouldPass;
+    if (pass != this.wouldPass) {
+      this.wouldPass = pass;
+      _temHistoryPwdList.add(pwd);
+      SharedPreferencesUtil.saveData<List<String>>(
+        "historyPwdList",
+        _temHistoryPwdList,
+      );
+    }
     return Column(
       children: [
         ListTile(

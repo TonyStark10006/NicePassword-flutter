@@ -1,8 +1,8 @@
-import 'package:awesome_tools/model/random_password.dart';
-import 'package:awesome_tools/widget/random_password/history_list.dart';
+import 'package:awesome_tools/state/gen_password_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
 
 class PwdBotton extends StatefulWidget {
   PwdBotton({Key? key}) : super(key: key);
@@ -20,16 +20,6 @@ class _PwdBottonState extends State<PwdBotton> {
   bool _number = true;
   bool _character = false;
   int _passwordLength = 8;
-
-  String getPassword() {
-    return RandomPasswordModel(
-      _upperCase,
-      _lowerCase,
-      _number,
-      _character,
-      _passwordLength,
-    ).getPassword();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,10 +107,13 @@ class _PwdBottonState extends State<PwdBotton> {
                         ]);
                   });
             } else {
+              String pwd = context
+                  .read<GenRandomPasswordProvider>() //.randomPassword;
+                  .getRandomPassword(_upperCase, _lowerCase, _number,
+                      _character, _passwordLength);
               showDialog<String>(
                 context: context,
                 builder: (BuildContext context) {
-                  var pwd = getPassword();
                   return StatefulBuilder(builder: (context, setState) {
                     return AlertDialog(
                       // title: const Text('随机密码已生成'),
@@ -136,17 +129,24 @@ class _PwdBottonState extends State<PwdBotton> {
                         TextButton(
                           onPressed: () {
                             Clipboard.setData(ClipboardData(text: pwd));
-                            eventBus.fire(pwd);
-                            print('点击了复制');
+                            // eventBus.fire(pwd);
+                            context.read<GenRandomPasswordProvider>().pass();
+                            print('点击了复制' + pwd);
                             showToast("已复制到粘贴板", 22);
                             Navigator.pop(context, 'OK');
-                            print(pwd);
                           },
                           child: const Text('复制'),
                         ),
                         TextButton(
                           onPressed: () {
-                            setState(() => pwd = getPassword());
+                            pwd = context
+                                .read<GenRandomPasswordProvider>()
+                                .getRandomPassword(_upperCase, _lowerCase,
+                                    _number, _character, _passwordLength);
+                            print(pwd);
+                            setState(() {
+                              pwd = pwd;
+                            });
                             print('点击了再来一次');
                           },
                           child: Text('再来一次'),

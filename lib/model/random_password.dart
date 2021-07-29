@@ -2,7 +2,8 @@ import 'dart:math';
 
 class RandomPasswordModel {
   RandomPasswordModel(this.upperCaseCondition, this.lowerCaseCondition,
-      this.numberCondition, this.characterCondition, this.passwordLength);
+      this.numberCondition, this.characterCondition,
+      {this.passwordLength = 8});
 
   // this.upperCaseCondition = false,
   // this.lowerCaseCondition = true,
