@@ -14,7 +14,7 @@ class HistoryPwdList extends StatefulWidget {
 
 class _HistoryPwdListState extends State<HistoryPwdList> {
   List<String> _temHistoryPwdList = [];
-  bool wouldPass = false;
+  bool passed = false;
 
   @override
   void initState() {
@@ -36,8 +36,8 @@ class _HistoryPwdListState extends State<HistoryPwdList> {
   Widget build(BuildContext buildContext) {
     String pwd = buildContext.watch<GenRandomPasswordProvider>().randomPassword;
     bool pass = buildContext.watch<GenRandomPasswordProvider>().shouldPass;
-    if (pass != this.wouldPass) {
-      this.wouldPass = pass;
+    if (pass != this.passed) {
+      this.passed = pass;
       _temHistoryPwdList.add(pwd);
       SharedPreferencesUtil.saveData<List<String>>(
         "historyPwdList",

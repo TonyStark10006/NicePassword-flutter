@@ -24,7 +24,7 @@ class GenRandomPasswordProvider with ChangeNotifier, DiagnosticableTreeMixin {
   }
 
   void pass() {
-    this._pass = !this._pass;
+    _pass = !_pass;
     notifyListeners();
   }
 

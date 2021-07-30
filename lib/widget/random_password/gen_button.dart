@@ -107,10 +107,7 @@ class _PwdBottonState extends State<PwdBotton> {
                         ]);
                   });
             } else {
-              String pwd = context
-                  .read<GenRandomPasswordProvider>() //.randomPassword;
-                  .getRandomPassword(_upperCase, _lowerCase, _number,
-                      _character, _passwordLength);
+              String pwd = getNewPassword();
               showDialog<String>(
                 context: context,
                 builder: (BuildContext context) {
@@ -139,15 +136,11 @@ class _PwdBottonState extends State<PwdBotton> {
                         ),
                         TextButton(
                           onPressed: () {
-                            pwd = context
-                                .read<GenRandomPasswordProvider>()
-                                .getRandomPassword(_upperCase, _lowerCase,
-                                    _number, _character, _passwordLength);
-                            print(pwd);
+                            pwd = getNewPassword();
+                            print(pwd + '点击了再来一次');
                             setState(() {
                               pwd = pwd;
                             });
-                            print('点击了再来一次');
                           },
                           child: Text('再来一次'),
                         ),
@@ -172,19 +165,9 @@ class _PwdBottonState extends State<PwdBotton> {
       fontSize: fontSize ?? 16.0,
     );
   }
-}
 
-class NewPassword {
-  NewPassword(
-    this.newPassword,
-    // this.upperCase,
-    // this.lowerCase,
-    // this.number,
-    // this.character,
-  );
-  String newPassword;
-  // bool upperCase;
-  // bool lowerCase;
-  // bool number;
-  // bool character;
+  String getNewPassword() {
+    return context.read<GenRandomPasswordProvider>().getRandomPassword(
+        _upperCase, _lowerCase, _number, _character, _passwordLength);
+  }
 }
