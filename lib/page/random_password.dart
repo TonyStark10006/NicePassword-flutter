@@ -15,25 +15,27 @@ class _RandomPasswordState extends State<RandomPassword> {
   @override
   Widget build(BuildContext context) {
     // print("randompassword");
-    return MaterialApp(
-      title: "随机密码生成",
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("随机密码生成"),
-          // backgroundColor: Colors.deepPurple[400],
-        ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 400,
-              child: HistoryPwdList(),
-            ),
-            PwdBotton(),
-          ],
-        ),
+    // return MaterialApp(
+    //   theme: ThemeData.dark(),
+    //   title: "随机密码生成",
+    // home: Scaffold(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("随机密码生成"),
+        // backgroundColor: Colors.deepPurple[400],
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: 400,
+            child: HistoryPwdList(),
+          ),
+          PwdBotton(),
+        ],
       ),
     );
+    // );
   }
 }
