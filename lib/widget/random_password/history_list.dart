@@ -46,12 +46,6 @@ class _HistoryPwdListState extends State<HistoryPwdList> {
     }
     return Column(
       children: [
-        ListTile(
-          title: Text(
-            "历史生成密码",
-            style: Theme.of(buildContext).textTheme.headline5,
-          ),
-        ),
         Expanded(
             child: ListView.builder(
                 // reverse: true,
