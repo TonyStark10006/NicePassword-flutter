@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PwdBotton extends StatefulWidget {
   PwdBotton({Key? key}) : super(key: key);
@@ -23,6 +24,7 @@ class _PwdBottonState extends State<PwdBotton> {
 
   @override
   Widget build(BuildContext context) {
+    var local = AppLocalizations.of(context)!;
     // !@#$%^&* A-Z a-z 0-9
     return Column(
       children: [
@@ -64,7 +66,7 @@ class _PwdBottonState extends State<PwdBotton> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("密码长度:    "),
+            Text("${local.pwdLength}:    "),
             DropdownButton(
               value: _passwordLength,
               onChanged: (int? newValue) {
@@ -96,13 +98,13 @@ class _PwdBottonState extends State<PwdBotton> {
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                        content: Text("请勾选条件"),
+                        content: Text(local.emptyCondition),
                         actions: <Widget>[
                           TextButton(
                             onPressed: () {
                               Navigator.pop(context, 'NoConditionsOK');
                             },
-                            child: const Text('确定'),
+                            child: Text(local.ok),
                           ),
                         ]);
                   });
@@ -121,7 +123,7 @@ class _PwdBottonState extends State<PwdBotton> {
                             print('点击了取消');
                             Navigator.pop(context, 'Cancel');
                           },
-                          child: const Text('取消'),
+                          child: Text(local.cancel),
                         ),
                         TextButton(
                           onPressed: () {
@@ -129,10 +131,10 @@ class _PwdBottonState extends State<PwdBotton> {
                             // eventBus.fire(pwd);
                             context.read<GenRandomPasswordProvider>().pass();
                             print('点击了复制' + pwd);
-                            showToast("已复制到粘贴板", 22);
+                            showToast(local.copiedToClipBoard, 22);
                             Navigator.pop(context, 'OK');
                           },
-                          child: const Text('复制'),
+                          child: Text(local.copy),
                         ),
                         TextButton(
                           onPressed: () {
@@ -142,7 +144,7 @@ class _PwdBottonState extends State<PwdBotton> {
                               pwd = pwd;
                             });
                           },
-                          child: Text('再来一次'),
+                          child: Text(local.oneMoreTime),
                         ),
                       ],
                     );
@@ -151,7 +153,7 @@ class _PwdBottonState extends State<PwdBotton> {
               );
             }
           },
-          child: const Text('濑 滋 苟'),
+          child: Text(local.genPWD),
         )
       ],
     );

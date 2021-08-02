@@ -1,0 +1,16 @@
+{
+    "randomPasswordPageTitle": "随机密码生成",
+    "delete": "删除",
+    "copy": "复制",
+    "pwdLength": "密码长度",
+    "genPWD": "濑 滋 苟",
+    "cancel": "取消",
+    "comfirm": "确定",
+    "oneMoreTime": "再来一次",
+    "emptyCondition": "请勾选条件",
+    "darkMode": "深色模式",
+    "lightMode": "浅色模式",
+    "followSysAppearance": "跟随系统",
+    "copiedToClipBoard": "已复制到粘贴板",
+    "ok": "好的"
+}

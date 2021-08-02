@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:awesome_tools/widget/random_password/history_list.dart';
 import 'package:awesome_tools/widget/random_password/gen_button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RandomPassword extends StatefulWidget {
   RandomPassword({Key? key}) : super(key: key);
@@ -14,9 +15,10 @@ class _RandomPasswordState extends State<RandomPassword> {
 
   @override
   Widget build(BuildContext context) {
+    print(Localizations.localeOf(context));
     return Scaffold(
       appBar: AppBar(
-        title: Text("随机密码生成"),
+        title: Text(AppLocalizations.of(context)!.randomPasswordPageTitle),
         // backgroundColor: Colors.deepPurple[400],
       ),
       body: Container(

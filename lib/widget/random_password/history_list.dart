@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:awesome_tools/util/shared_preferences_util.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HistoryPwdList extends StatefulWidget {
   HistoryPwdList({Key? key}) : super(key: key);
@@ -34,6 +35,7 @@ class _HistoryPwdListState extends State<HistoryPwdList> {
 
   @override
   Widget build(BuildContext buildContext) {
+    var local = AppLocalizations.of(context)!;
     String pwd = buildContext.watch<GenRandomPasswordProvider>().randomPassword;
     bool pass = buildContext.watch<GenRandomPasswordProvider>().shouldPass;
     if (pass != this.passed) {
@@ -68,7 +70,7 @@ class _HistoryPwdListState extends State<HistoryPwdList> {
                               _temHistoryPwdList,
                             ),
                           },
-                          child: Text("删除"),
+                          child: Text(local.delete),
                           style: ButtonStyle(
                             padding: MaterialStateProperty.all<EdgeInsets>(
                               EdgeInsets.all(-20),
@@ -80,9 +82,9 @@ class _HistoryPwdListState extends State<HistoryPwdList> {
                                   Clipboard.setData(ClipboardData(
                                     text: _temHistoryPwdList[index],
                                   )),
-                                  showToast("已复制到粘贴板", 22),
+                                  showToast(local.copiedToClipBoard, 22),
                                 },
-                            child: Text("复制")),
+                            child: Text(local.copy)),
                       ],
                     ),
                   );

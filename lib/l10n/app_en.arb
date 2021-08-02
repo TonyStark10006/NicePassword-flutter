@@ -1,0 +1,16 @@
+{
+    "randomPasswordPageTitle": "Gen random PWD",
+    "delete": "delete",
+    "copy": "copy",
+    "pwdLength": "password's length",
+    "genPWD": "let's go",
+    "cancel": "cancel",
+    "comfirm": "comfirm",
+    "oneMoreTime": "again",
+    "emptyCondition": "plz check some conditions",
+    "darkMode": "dark mode",
+    "lightMode": "light mode",
+    "followSysAppearance": "follow system",
+    "copiedToClipBoard": "copiedToClipBoard",
+    "ok": "OK"
+}
