@@ -15,7 +15,7 @@ class _RandomPasswordState extends State<RandomPassword> {
 
   @override
   Widget build(BuildContext context) {
-    print(Localizations.localeOf(context));
+    // print(Localizations.localeOf(context));
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.randomPasswordPageTitle),

@@ -1,4 +1,4 @@
-import 'package:awesome_tools/page/random_password.dart';
+import 'package:awesome_tools/page/index.dart';
 import 'package:awesome_tools/state/gen_password_provider.dart';
 import 'package:awesome_tools/state/theme_provider.dart';
 // import 'package:awesome_tools/util/get_device_info.dart';
@@ -41,13 +41,9 @@ class App extends StatelessWidget {
             Locale('zh', ''),
             Locale('en', ''),
           ],
-          title: "随机密码生成",
+          title: "很赞工具箱",
           //AppLocalizations.of(context)!.randomPasswordPageTitle,
-          home: RandomPassword(),
-          theme: ThemeData(
-            // primarySwatch: Colors.blue,
-            brightness: mode == 1 ? Brightness.light : Brightness.dark,
-          ),
+          home: Index(), //RandomPassword()
           theme: mode == 2
               ? ThemeData(
                   primarySwatch: Colors.blue,
@@ -60,6 +56,5 @@ class App extends StatelessWidget {
         );
       },
     );
-    // throw UnimplementedError();
   }
 }

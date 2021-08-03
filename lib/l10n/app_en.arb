@@ -1,5 +1,6 @@
 {
-    "randomPasswordPageTitle": "Gen random PWD",
+    "appName": "Awesome Tools",
+    "randomPasswordPageTitle": "gen random password",
     "delete": "delete",
     "copy": "copy",
     "pwdLength": "password's length",
@@ -11,7 +12,8 @@
     "darkMode": "dark mode",
     "lightMode": "light mode",
     "followSysAppearance": "follow system",
-    "copiedToClipBoard": "copiedToClipBoard",
-    "ok": "OK"
+    "copiedToClipBoard": "copied to clipboard",
+    "ok": "OK",
     "settings": "settings",
+    "gallery": "gallery"
 }

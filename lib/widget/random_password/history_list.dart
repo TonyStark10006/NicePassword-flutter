@@ -19,7 +19,7 @@ class _HistoryPwdListState extends State<HistoryPwdList> {
 
   @override
   void initState() {
-    print(1);
+    // print(1);
     super.initState();
     SharedPreferencesUtil.getData<List<String>?>("historyPwdList")
         .then((value) {
