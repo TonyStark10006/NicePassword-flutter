@@ -29,7 +29,7 @@ class App extends StatelessWidget {
         )
       ],
       builder: (BuildContext context, _) {
-        int mode = Provider.of<ThemeProvider>(context, listen: false).mode;
+        int mode = Provider.of<ThemeProvider>(context, listen: true).mode;
         return MaterialApp(
           localizationsDelegates: [
             AppLocalizations.delegate,
@@ -48,6 +48,14 @@ class App extends StatelessWidget {
             // primarySwatch: Colors.blue,
             brightness: mode == 1 ? Brightness.light : Brightness.dark,
           ),
+          theme: mode == 2
+              ? ThemeData(
+                  primarySwatch: Colors.blue,
+                  // brightness: mode == 1 ? Brightness.light : Brightness.dark,
+                )
+              : mode == 0
+                  ? ThemeData.light()
+                  : ThemeData.dark(),
           darkTheme: ThemeData.dark(),
         );
       },

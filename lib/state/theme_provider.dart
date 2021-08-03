@@ -2,7 +2,7 @@ import 'package:awesome_tools/util/shared_preferences_util.dart';
 import 'package:flutter/material.dart';
 
 class ThemeProvider with ChangeNotifier {
-  int _mode = 1;
+  int _mode = 0;
 
   int get mode => _mode;
 

@@ -3,30 +3,36 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class Setting extends StatelessElement {
-  Setting(StatelessWidget widget) : super(widget);
+class Setting extends StatelessWidget {
+  Setting({Key? key}) : super(key: key);
 
   @override
-  Widget build() {
-    return StatefulBuilder(builder: (context, _) {
-      var local = AppLocalizations.of(context)!;
-      ThemeProvider provider = context.watch<ThemeProvider>();
-      return ListView(
-        children: [
+  Widget build(BuildContext context) {
+    // return StatefulBuilder(builder: (context, _) {
+    var local = AppLocalizations.of(context)!;
+    ThemeProvider provider = context.watch<ThemeProvider>();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(local.settings),
+      ),
+      body: ListView(
+        children: ListTile.divideTiles(context: context, tiles: [
           ListTile(
             title: Text(local.lightMode),
-            onTap: () => provider.setMode(1),
+            onTap: () => provider.setMode(0),
           ),
           ListTile(
             title: Text(local.darkMode),
-            onTap: () => provider.setMode(2),
+            onTap: () => provider.setMode(1),
           ),
           ListTile(
             title: Text(local.followSysAppearance),
-            onTap: () => provider.setMode(3),
+            onTap: () => provider.setMode(2),
           ),
-        ],
-      );
-    });
+        ]).toList(),
+      ),
+    );
+    //;
+    // });
   }
 }
