@@ -52,7 +52,7 @@ class App extends StatelessWidget {
               : mode == 0
                   ? ThemeData.light()
                   : ThemeData.dark(),
-          darkTheme: ThemeData.dark(),
+          darkTheme: mode == 0 ? null : ThemeData.dark(),
         );
       },
     );
