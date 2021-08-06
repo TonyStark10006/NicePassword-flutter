@@ -33,13 +33,27 @@ class Index extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) => RandomPassword()));
                 },
-                title: Text(local.randomPasswordPageTitle),
+                title: Row(
+                  children: [
+                    Icon(Icons.toys),
+                    SizedBox(width: 8),
+                    Text(local.randomPasswordPageTitle),
+                  ],
+                ),
+
                 // tileColor: Colors.blue[50],
                 shape: border,
               ),
               divider,
               ListTile(
                 title: Text(local.gallery),
+                title: Row(
+                  children: [
+                    Icon(Icons.picture_in_picture),
+                    SizedBox(width: 8),
+                    Text(local.gallery),
+                  ],
+                ),
                 // tileColor: Colors.blue[50],
                 shape: border,
               ),
@@ -50,7 +64,13 @@ class Index extends StatelessWidget {
                     return Setting();
                   }));
                 },
-                title: Text(local.settings),
+                title: Row(
+                  children: [
+                    Icon(Icons.settings),
+                    SizedBox(width: 8),
+                    Text(local.settings),
+                  ],
+                ),
                 // tileColor: Colors.blue[50],
                 shape: border,
               ),
