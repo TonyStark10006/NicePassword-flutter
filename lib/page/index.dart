@@ -1,3 +1,4 @@
+import 'package:awesome_tools/page/gallery.dart';
 import 'package:awesome_tools/page/random_password.dart';
 import 'package:awesome_tools/page/setting.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +47,6 @@ class Index extends StatelessWidget {
               ),
               divider,
               ListTile(
-                title: Text(local.gallery),
                 title: Row(
                   children: [
                     Icon(Icons.picture_in_picture),
@@ -56,6 +56,11 @@ class Index extends StatelessWidget {
                 ),
                 // tileColor: Colors.blue[50],
                 shape: border,
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return Gallery();
+                  }));
+                },
               ),
               divider,
               ListTile(
