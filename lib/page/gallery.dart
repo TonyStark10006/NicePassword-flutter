@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:transparent_image/transparent_image.dart';
+
+import 'package:cached_network_image/cached_network_image.dart';
 
 class Gallery extends StatelessWidget {
   @override
@@ -30,9 +31,11 @@ class Gallery extends StatelessWidget {
               },
               child: Hero(
                 tag: index + 10,
-                child: FadeInImage.memoryNetwork(
-                  placeholder: kTransparentImage,
-                  image: "https://picsum.photos/250?image=${index + 10}",
+                child: CachedNetworkImage(
+                  placeholder: (_, url) => Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                  imageUrl: "https://picsum.photos/250?image=${index + 10}",
                 ),
               ));
         }),
@@ -56,7 +59,12 @@ class Zoom extends StatelessWidget {
       },
       child: Hero(
         tag: this.index,
-        child: Image.network(this.url),
+        child: CachedNetworkImage(
+          placeholder: (_, url) => Center(
+            child: CircularProgressIndicator(),
+          ),
+          imageUrl: this.url,
+        ),
       ),
     );
   }
