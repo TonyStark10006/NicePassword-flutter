@@ -1,9 +1,12 @@
 import 'package:awesome_tools/page/index.dart';
 import 'package:awesome_tools/state/gen_password_provider.dart';
-import 'package:awesome_tools/state/theme_provider.dart';
+import 'package:awesome_tools/state/theme_bloc.dart';
+// import 'package:awesome_tools/state/theme_cubit.dart';
+// import 'package:awesome_tools/state/theme_provider.dart';
 // import 'package:awesome_tools/util/get_device_info.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -24,36 +27,72 @@ class App extends StatelessWidget {
           // lazy: false,
           create: (_) => GenRandomPasswordProvider(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => ThemeProvider(),
-        )
+        // ChangeNotifierProvider(
+        // create: (_) => ThemeProvider(),
+        // )
       ],
       builder: (BuildContext context, _) {
-        int mode = Provider.of<ThemeProvider>(context, listen: true).mode;
-        return MaterialApp(
-          localizationsDelegates: [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider<ThemeBloc>(
+              create: (BuildContext context) => ThemeBloc(),
+            )
           ],
-          supportedLocales: [
-            Locale('zh', ''),
-            Locale('en', ''),
-          ],
-          title: "很赞工具箱",
-          //AppLocalizations.of(context)!.randomPasswordPageTitle,
-          home: Index(), //RandomPassword()
-          theme: mode == 2
-              ? ThemeData(
-                  primarySwatch: Colors.blue,
-                  // brightness: mode == 1 ? Brightness.light : Brightness.dark,
-                )
-              : mode == 0
-                  ? ThemeData.light()
-                  : ThemeData.dark(),
-          darkTheme: mode == 0 ? null : ThemeData.dark(),
+          child:
+              BlocBuilder<ThemeBloc, ThemeType>(builder: (context, themeType) {
+            // int mode = Provider.of<ThemeProvider>(context, listen: true).mode;
+            var mode = BlocProvider.of<ThemeBloc>(context).state.mode;
+            return MaterialApp(
+              localizationsDelegates: [
+                AppLocalizations.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              supportedLocales: [
+                Locale('zh', ''),
+                Locale('en', ''),
+              ],
+              title: "很赞工具箱",
+              //AppLocalizations.of(context)!.randomPasswordPageTitle,
+              home: Index(), //RandomPassword()
+              theme: mode == 2
+                  ? ThemeData(
+                      primarySwatch: Colors.blue,
+                      // brightness: mode == 1 ? Brightness.light : Brightness.dark,
+                    )
+                  : mode == 0
+                      ? ThemeData.light()
+                      : ThemeData.dark(),
+              darkTheme: mode == 0 ? null : ThemeData.dark(),
+            );
+          }),
         );
+        // int mode = Provider.of<ThemeProvider>(context, listen: true).mode;
+        // return MaterialApp(
+        //   localizationsDelegates: [
+        //     AppLocalizations.delegate,
+        //     GlobalMaterialLocalizations.delegate,
+        //     GlobalWidgetsLocalizations.delegate,
+        //     GlobalCupertinoLocalizations.delegate,
+        //   ],
+        //   supportedLocales: [
+        //     Locale('zh', ''),
+        //     Locale('en', ''),
+        //   ],
+        //   title: "很赞工具箱",
+        //   //AppLocalizations.of(context)!.randomPasswordPageTitle,
+        //   home: Index(), //RandomPassword()
+        //   theme: mode == 2
+        //       ? ThemeData(
+        //           primarySwatch: Colors.blue,
+        //           // brightness: mode == 1 ? Brightness.light : Brightness.dark,
+        //         )
+        //       : mode == 0
+        //           ? ThemeData.light()
+        //           : ThemeData.dark(),
+        //   darkTheme: mode == 0 ? null : ThemeData.dark(),
+        // );
       },
     );
   }
