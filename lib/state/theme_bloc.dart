@@ -31,4 +31,10 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeType> {
         break;
     }
   }
+
+  // @override
+  // void onChange(Change<ThemeType> change) {
+  //   super.onChange(change);
+  //   print(change.currentState.mode);
+  // }
 }
