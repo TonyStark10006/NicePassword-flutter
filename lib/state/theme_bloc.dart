@@ -3,22 +3,22 @@ import 'package:bloc/bloc.dart';
 
 enum ThemeEvent { toLightMode, toDarkMode, toAutoMode }
 
-class ThemeType {
-  ThemeType(this.mode);
+class ThemeModeMsg {
+  ThemeModeMsg(this.mode);
   int mode;
 }
 
 // 0 => light, 1 => dark, 2 => follow system
-class ThemeBloc extends Bloc<ThemeEvent, ThemeType> {
-  ThemeBloc() : super(ThemeType(0));
+class ThemeBloc extends Bloc<ThemeEvent, ThemeModeMsg> {
+  ThemeBloc() : super(ThemeModeMsg(0));
 
-  ThemeType changeMode(int mode) {
+  ThemeModeMsg changeMode(int mode) {
     SharedPreferencesUtil.saveData<int>("themeMode", mode);
-    return ThemeType(mode);
+    return ThemeModeMsg(mode);
   }
 
   @override
-  Stream<ThemeType> mapEventToState(ThemeEvent event) async* {
+  Stream<ThemeModeMsg> mapEventToState(ThemeEvent event) async* {
     switch (event) {
       case ThemeEvent.toLightMode:
         yield changeMode(0);

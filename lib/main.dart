@@ -47,11 +47,11 @@ class App extends StatelessWidget {
         return MultiBlocProvider(
           providers: [
             BlocProvider<ThemeBloc>(
-              create: (BuildContext context) => ThemeBloc(),
+              create: (_) => ThemeBloc(),
             )
           ],
-          child:
-              BlocBuilder<ThemeBloc, ThemeType>(builder: (context, themeType) {
+          child: BlocBuilder<ThemeBloc, ThemeModeMsg>(
+              builder: (context, themeModeMsg) {
             // int mode = Provider.of<ThemeProvider>(context, listen: true).mode;
             var _mode = BlocProvider.of<ThemeBloc>(context).state.mode;
             if (_modeLocal != null && readLocalMode == false) {
