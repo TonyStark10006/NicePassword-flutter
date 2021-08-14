@@ -23,16 +23,25 @@ class Setting extends StatelessWidget {
             title: Text(local.lightMode),
             onTap: () =>
                 blocProvider.add(ThemeEvent.toLightMode), //provider.setMode(0),
+            trailing: blocProvider.state.mode == 0
+                ? Icon(Icons.wb_sunny_rounded)
+                : null,
           ),
           ListTile(
             title: Text(local.darkMode),
             onTap: () =>
                 blocProvider.add(ThemeEvent.toDarkMode), //provider.setMode(1),
+            trailing: blocProvider.state.mode == 1
+                ? Icon(Icons.nightlight_round)
+                : null,
           ),
           ListTile(
             title: Text(local.followSysAppearance),
             onTap: () =>
                 blocProvider.add(ThemeEvent.toAutoMode), //provider.setMode(2),
+            trailing: blocProvider.state.mode == 2
+                ? Icon(Icons.wb_auto_rounded)
+                : null,
           ),
         ]).toList(),
       ),
