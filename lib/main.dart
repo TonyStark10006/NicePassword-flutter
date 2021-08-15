@@ -1,6 +1,7 @@
 import 'package:awesome_tools/page/index.dart';
 import 'package:awesome_tools/state/gen_password_provider.dart';
 import 'package:awesome_tools/state/theme_bloc.dart';
+import 'package:awesome_tools/util/will_pop_scope_on_seconds.dart';
 import 'package:awesome_tools/util/shared_preferences_util.dart';
 // import 'package:awesome_tools/state/theme_cubit.dart';
 // import 'package:awesome_tools/state/theme_provider.dart';
@@ -72,7 +73,9 @@ class App extends StatelessWidget {
               ],
               title: "很赞工具箱",
               //AppLocalizations.of(context)!.randomPasswordPageTitle,
-              home: Index(), //RandomPassword()
+              home: WillPopScopeOnSeconds(
+                childWidget: Index(),
+              ), //RandomPassword()
               theme: _mode.mode == 2
                   ? ThemeData(
                       primarySwatch: Colors.blue,

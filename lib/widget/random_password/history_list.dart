@@ -82,7 +82,8 @@ class _HistoryPwdListState extends State<HistoryPwdList> {
                                   Clipboard.setData(ClipboardData(
                                     text: _temHistoryPwdList[index],
                                   )),
-                                  showToast(local.copiedToClipBoard, 22),
+                                  showToast(local.copiedToClipBoard,
+                                      fontSize: 22),
                                 },
                             child: Text(local.copy)),
                       ],
