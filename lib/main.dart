@@ -53,9 +53,10 @@ class App extends StatelessWidget {
           child: BlocBuilder<ThemeBloc, ThemeModeMsg>(
               builder: (context, themeModeMsg) {
             // int mode = Provider.of<ThemeProvider>(context, listen: true).mode;
-            var _mode = BlocProvider.of<ThemeBloc>(context).state.mode;
+            var _mode = BlocProvider.of<ThemeBloc>(context).state;
+            print(_mode.mode);
             if (_modeLocal != null && readLocalMode == false) {
-              _mode = _modeLocal!;
+              _mode.mode = _modeLocal!;
               readLocalMode = !readLocalMode;
             }
             return MaterialApp(
@@ -72,15 +73,15 @@ class App extends StatelessWidget {
               title: "很赞工具箱",
               //AppLocalizations.of(context)!.randomPasswordPageTitle,
               home: Index(), //RandomPassword()
-              theme: _mode == 2
+              theme: _mode.mode == 2
                   ? ThemeData(
                       primarySwatch: Colors.blue,
                       // brightness: mode == 1 ? Brightness.light : Brightness.dark,
                     )
-                  : _mode == 0
+                  : _mode.mode == 0
                       ? ThemeData.light()
                       : ThemeData.dark(),
-              darkTheme: _mode == 0 ? null : ThemeData.dark(),
+              darkTheme: _mode.mode == 0 ? null : ThemeData.dark(),
             );
           }),
         );

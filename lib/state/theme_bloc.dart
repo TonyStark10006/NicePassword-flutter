@@ -10,7 +10,7 @@ class ThemeModeMsg {
 
 // 0 => light, 1 => dark, 2 => follow system
 class ThemeBloc extends Bloc<ThemeEvent, ThemeModeMsg> {
-  ThemeBloc() : super(ThemeModeMsg(0));
+  ThemeBloc() : super(ThemeModeMsg(2));
 
   ThemeModeMsg changeMode(int mode) {
     SharedPreferencesUtil.saveData<int>("themeMode", mode);
