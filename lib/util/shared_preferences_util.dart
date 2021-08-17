@@ -1,8 +1,14 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesUtil {
+  static SharedPreferences? _prefs;
+
+  static Future<SharedPreferences> getInstance() async {
+    return (_prefs ??= await SharedPreferences.getInstance());
+  }
+
   static saveData<T>(String key, T value) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var prefs = await getInstance();
     switch (T) {
       case String:
         prefs.setString(key, value as String);
@@ -22,8 +28,7 @@ class SharedPreferencesUtil {
   }
 
   static Future<T> getData<T>(String key) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
+    var prefs = await getInstance();
     T res;
     switch (T) {
       case String:
