@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:awesome_tools/widget/random_password/history_list.dart';
 import 'package:awesome_tools/widget/random_password/gen_button.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RandomPassword extends StatefulWidget {
@@ -22,6 +23,9 @@ class _RandomPasswordState extends State<RandomPassword> {
         // backgroundColor: Colors.deepPurple[400],
       ),
       body: Container(
+        // constraints: BoxConstraints(
+        //   maxHeight: MediaQuery.of(context).size.height,
+        // ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -33,11 +37,19 @@ class _RandomPasswordState extends State<RandomPassword> {
                   width: 3.0,
                 ),
               ),
-              height: 400,
+              height: MediaQuery.of(context).size.height * .6,
               margin: EdgeInsets.only(top: 20, left: 5, right: 5),
-              child: HistoryPwdList(),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: 400,
+                ),
+                child: HistoryPwdList(),
+              ),
             ),
-            PwdBotton(),
+            Container(
+              height: MediaQuery.of(context).size.height * .2,
+              child: PwdBotton(),
+            )
           ],
         ),
       ),
